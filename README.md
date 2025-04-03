@@ -159,7 +159,7 @@ docker build -t todoappsplunk .
 Ensure your Splunk container is running, then start your Spring Boot app and run in the same network:
 
 ```sh
-docker run -p 8081:8081 -e SPLUNK_URL="http://host.docker.internal:8088" -e SPLUNK_TOKEN="your-splunk-token" --name todoapp todoappsplunk
+docker run -p 8081:8081 -e SPLUNK_URL="http://host.docker.internal:8088" -e SPLUNK_TOKEN="your-splunk-token" --name todoapp vijaynvb/todoappsplunk:latest
 ```
 
 ## **Check Logs in Splunk**
