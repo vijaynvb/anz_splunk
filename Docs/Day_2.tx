@@ -11,3 +11,59 @@ configure forwarder for custom folder:
 
 splunk list monitor
 splunk add monitor "C:\Users\user\Downloads\Day1_DataInput\Day1_DataInput\www2\"
+
+Data -> Index -> search ->  
+        Knowledge manager -> process event -> analyze for fields 
+            Knowledge objects
+
+
+india
+
+Input Type  -------------     Uploaded File webserver1
+File Name  -------------     access.log
+Source Type  -------------  web ->    access_combined
+Host  -------------     Webserver1
+Index  -------------     web_access  -> create a index
+
+usa
+Input Type  -------------     Uploaded File
+File Name  -------------     access.log
+Source Type  -------------     access_combined
+Host  -------------     Webserver2
+Index  -------------     web_access -> user existing
+
+singapore
+Input Type  -------------     Uploaded File
+File Name  -------------     access.log
+Source Type  -------------     access_combined
+Host  -------------     Webserver3
+Index  -------------     web_access --> user existing 
+
+
+
+NOT zipcode=1000000 - 2
+
+Zipcode != 10000000 - 1
+
+records 1   zipcode = 10000001
+record 2    ------
+
+
+applicationserevr -> replication
+
+server1 
+    1. pid 
+    2. httpserverlogs
+server2                     splunk = sourcetype =applicationserver_pid
+    1. pid                           source = pid, pid, pid
+server3                              host = server1,server2,server3 
+    1. pid                           index ="pidindex"
+
+---------------------------------------------------------------------------- 
+
+search query for creating reports:
+
+index="main" ( nodeName=host01 OR nodeName=host02 )  NOT partner=Telco07
+| search HTTPResponse!="Success"
+| table callerNumber,calleeNumber,responseCode,HTTPResponse
+| top limit=10 responseCode
