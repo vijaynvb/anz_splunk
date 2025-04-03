@@ -67,3 +67,12 @@ index="main" ( nodeName=host01 OR nodeName=host02 )  NOT partner=Telco07
 | search HTTPResponse!="Success"
 | table callerNumber,calleeNumber,responseCode,HTTPResponse
 | top limit=10 responseCode
+
+reports in web site: https://webhook.site/ 
+
+gmail credentials: 
+
+    Mail host: smtp.gmail.com:587
+    Email security: Enable TLS
+    username: g.s.r.padmanabhan@gmail.com
+    password: sdyr hspq lbmu ydiv
