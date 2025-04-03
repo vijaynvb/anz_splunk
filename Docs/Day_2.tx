@@ -7,3 +7,7 @@ To Fix The Uniersal Forwarder execute this command in command prompt with admini
  
 ---------------------------------------------------------------------------- 
 
+configure forwarder for custom folder:
+
+splunk list monitor
+splunk add monitor "C:\Users\user\Downloads\Day1_DataInput\Day1_DataInput\www2\"
