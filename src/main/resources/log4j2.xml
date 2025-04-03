@@ -8,8 +8,8 @@
         
         <SplunkHttp
                 name="splunkhttp"
-                url="http://splunk:8088"
-                token="6531d72a-d68d-4e87-ba3d-8a2bc18af2b6"
+                url="${env:SPLUNK_URL}"
+    			token="${env:SPLUNK_TOKEN}"
                 host="localhost"
                 index="todoapp_index"
                 type="raw"

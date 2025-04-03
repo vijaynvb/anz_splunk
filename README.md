@@ -103,8 +103,8 @@ Create or update `src/main/resources/log4j2.xml`:
         
         <SplunkHttp
                 name="splunkhttp"
-                url="http://<ip-address>:8088"
-                token="Your-YOUR_SPLUNK_TOKEN"
+                url="${env:SPLUNK_URL}"
+    			    token="${env:SPLUNK_TOKEN}"
                 host="localhost"
                 index="todoapp_index"
                 type="raw"
@@ -130,11 +130,6 @@ Create or update `src/main/resources/log4j2.xml`:
 </Configuration>
 ```
 
-Replace:
-
-- `YOUR_SPLUNK_TOKEN` with the token you copied from Splunk.
-- `<ip-address>` replace ip address with system IP Address or if running Splunk as docker container specify the conatiner name as IP Address.
-
 ## **4. Dockerize the Spring Boot Application**
 
 Create a `Dockerfile` in your Spring Boot project root:
@@ -156,7 +151,7 @@ mvn clean package
 ### **Build the Docker Image**
 
 ```sh
-docker build -t todoapp .
+docker build -t todoappsplunk .
 ```
 
 ### **Run the Container**
@@ -164,7 +159,7 @@ docker build -t todoapp .
 Ensure your Splunk container is running, then start your Spring Boot app and run in the same network:
 
 ```sh
-docker run --network splunk-net -p 8081:8081 --name todoapp todoapp
+docker run -p 8081:8081 -e SPLUNK_URL="http://host.docker.internal:8088" -e SPLUNK_TOKEN="your-splunk-token" --name todoapp todoappsplunk
 ```
 
 ## **Check Logs in Splunk**
