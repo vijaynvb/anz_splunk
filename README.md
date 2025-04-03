@@ -1,4 +1,4 @@
-# Splunk integration in Spring
+# Splunk integration in Spring 
 
 ## **1. Configure Splunk to Receive Logs**
 
