@@ -1,0 +1,9 @@
+To Fix The Uniersal Forwarder execute this command in command prompt with administrator privilege 
+
+    splunk set deploy-poll <IP_address/hostname>:<management_port>
+    splunk restart
+
+    example: splunk set deploy-poll 10.32.2.151:8089
+ 
+---------------------------------------------------------------------------- 
+

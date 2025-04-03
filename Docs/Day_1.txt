@@ -1,0 +1,17 @@
+https://bit.ly/anz_splunk
+
+DB Connect 
+
+Install Splunk Enterprise on windows:
+
+https://docs.splunk.com/Documentation/Splunk/9.4.1/Installation/InstallonWindows
+
+https://www.splunk.com/en_us/download/universal-forwarder.html
+
+
+server 1 ->  Splunk Server -> reciver -> storing all the data 
+
+    server a -> application -> EUserManagementSVC -> logs -> c:\data\log.csv -> forwarder -> configured -> splunk server 
+                               application springboot -> splunk -> server -> rest api
+    server b -> application -> EDeptManagementSVC -> logs -> c:\data\log.csv
+    server c -> application -> ESalaryManagementSVC -> logs -> c:\data\log.csv

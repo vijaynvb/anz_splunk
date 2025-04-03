@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%style{%d{ISO8601}} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{10}}{bright,yellow} %style{%logger{36}}{cyan}: %msg%n%throwable" />
+        </Console>
+        
+        <SplunkHttp
+                name="splunkhttp"
+                url="http://splunk:8088"
+                token="6531d72a-d68d-4e87-ba3d-8a2bc18af2b6"
+                host="localhost"
+                index="todoapp_index"
+                type="raw"
+                source="http-event-logs"
+                sourcetype="log4j"
+                messageFormat="text"
+                disableCertificateValidation="true">
+            <PatternLayout pattern="%m" />
+        </SplunkHttp>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.company.todoapp" level="trace" additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="splunkhttp"/>
+        </Logger>
+        <Root level="trace">
+		    <AppenderRef ref="console" />
+		    <AppenderRef ref="splunkhttp" />
+		</Root>
+
+    </Loggers>
+</Configuration>
