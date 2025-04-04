@@ -1,0 +1,124 @@
+{
+    "info": {
+      "name": "Splunk API Collection",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Basic Authentication",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+          ],
+          "url": {
+            "raw": "https://localhost:8089/services/auth/login",
+            "protocol": "https",
+            "host": ["localhost"],
+            "port": "8089",
+            "path": ["services", "auth", "login"]
+          },
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              { "key": "username", "value": "admin" },
+              { "key": "password", "value": "changeme" }
+            ]
+          }
+        }
+      },
+      {
+        "name": "Token-Based Authentication",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "Bearer <YOUR_TOKEN>" }
+          ],
+          "url": {
+            "raw": "https://localhost:8089/services/search/jobs",
+            "protocol": "https",
+            "host": ["localhost"],
+            "port": "8089",
+            "path": ["services", "search", "jobs"]
+          }
+        }
+      },
+      {
+        "name": "Create Search Job",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Authorization", "value": "Splunk <SESSION_KEY>" },
+            { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+          ],
+          "url": {
+            "raw": "https://localhost:8089/services/search/jobs",
+            "protocol": "https",
+            "host": ["localhost"],
+            "port": "8089",
+            "path": ["services", "search", "jobs"]
+          },
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              { "key": "search", "value": "search index=_internal | head 10" }
+            ]
+          }
+        }
+      },
+      {
+        "name": "Check Search Job Status",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "Splunk <SESSION_KEY>" }
+          ],
+          "url": {
+            "raw": "https://localhost:8089/services/search/jobs/{search_id}",
+            "protocol": "https",
+            "host": ["localhost"],
+            "port": "8089",
+            "path": ["services", "search", "jobs", "{search_id}"]
+          }
+        }
+      },
+      {
+        "name": "Retrieve Search Results",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "Splunk <SESSION_KEY>" }
+          ],
+          "url": {
+            "raw": "https://localhost:8089/services/search/jobs/{sid}/results?output_mode=json",
+            "protocol": "https",
+            "host": ["localhost"],
+            "port": "8089",
+            "path": ["services", "search", "jobs", "{sid}", "results"],
+            "query": [{ "key": "output_mode", "value": "json" }]
+          }
+        }
+      },
+      {
+        "name": "Export Large Search Results",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "Splunk <SESSION_KEY>" }
+          ],
+          "url": {
+            "raw": "https://localhost:8089/services/search/jobs/export?search=search index=_internal | head 100&output_mode=csv",
+            "protocol": "https",
+            "host": ["localhost"],
+            "port": "8089",
+            "path": ["services", "search", "jobs", "export"],
+            "query": [
+              { "key": "search", "value": "search index=_internal | head 100" },
+              { "key": "output_mode", "value": "csv" }
+            ]
+          }
+        }
+      }
+    ]
+  }
+  
