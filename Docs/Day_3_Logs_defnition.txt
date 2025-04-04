@@ -1,0 +1,192 @@
+Logs Details:
+
+Data Source: 
+    1. EventGen - Index - Live Data 
+    2. Web Access -Index - Static Data 
+    3. Zipcode_Mapping.csv - Lookup data for location identitfication.
+    4. responseCode_Mapping.csv - Lookup data for HTTP Response Code definition as per businees.
+
+1. EventGen Data Description: 
+
+Sample Data: 
+
+    2025-04-04 06:40:57 callerNumber=7108341 calleeNumber=9876520 nodeName=host02 nodeIP=10.12.0.2 responseCode=200 sessionId=EC933AE223E08E54E1A662B2 zipCode=35216 userIPAddress=192.168.138.55 partner=Telco07 partnerDomain=Telco07.com deviceMAC=94:b4:e4:03:c2:42 duration=0.959
+
+1. Timestamp:
+2025-04-04 06:40:57: This is the date and time when the log was generated. It indicates that the event occurred on April 4th, 2025, at 06:40:57.
+
+2. callerNumber:
+callerNumber=7108341: This is the phone number of the caller. It helps to identify who initiated the communication.
+
+3. calleeNumber:
+calleeNumber=9876520: This is the phone number of the callee (recipient of the call). It indicates the destination of the communication.
+
+4. nodeName:
+nodeName=host02: This refers to the name of the server or system (host02) where the log was generated. It helps in identifying which server processed the request.
+
+5. nodeIP:
+nodeIP=10.12.0.2: This is the IP address of the server (host02) that handled the request. This is useful for tracing network communication and understanding where the action took place.
+
+6. responseCode:
+responseCode=200: This is the HTTP or system response code. A value of 200 typically means "OK," indicating that the request was successful. This helps to confirm that the operation (e.g., call establishment or processing) completed without errors.
+
+7. sessionId:
+sessionId=EC933AE223E08E54E1A662B2: This is a unique identifier for the session. It can be used to track the entire lifecycle of a particular transaction or call session, from start to finish.
+
+8. zipCode:
+zipCode=35216: This could be the geographical location associated with the caller or the device. It is commonly used for location tracking or demographic analysis.
+
+9. userIPAddress:
+userIPAddress=192.168.138.55: This is the IP address of the user (likely the caller). It can be used to identify the network or location from which the request was initiated. In this case, it looks like a local/private IP address, possibly indicating that the call originated from an internal network.
+
+10. partner:
+partner=Telco07: This indicates the partner or service provider associated with the call or transaction. In this case, the partner is Telco07.
+
+11. partnerDomain:
+partnerDomain=Telco07.com: This is the domain or website associated with the partner. This might be used for further identification or reference purposes.
+
+12. deviceMAC:
+deviceMAC=94:b4:e4:03:c2:42: This is the MAC address of the device used by the caller or user. The MAC address can be used to uniquely identify a network interface on the device, and it could be valuable for tracking the device across different sessions or troubleshooting network issues.
+
+13. duration:
+duration=0.959: This is the duration of the call or transaction in seconds. In this case, it is approximately 0.96 seconds. This could indicate the duration of a call or session, and it could be used to measure system performance or user experience (e.g., short duration could indicate a failed call or brief interaction).
+
+How This Log Can Be Used for Analysis:
+Call Session Analysis:
+    1. By tracking the sessionId, you can monitor the entire flow of a communication session, including any issues, retries, or failures.
+
+    2. If the duration is very short (like this one), it could indicate a problem such as a dropped call or failure. You could correlate this with other logs or events to understand why the session was so short.
+
+Performance Monitoring:
+
+    1. The responseCode (200) shows that the request was processed successfully, but you could look for patterns in responseCode failures (such as 400, 500 codes) to identify when problems occur.
+
+    2. You could also track response times and session durations over time to spot performance degradation or other issues in your system.
+
+Geographical Insights:
+
+    1. The zipCode and userIPAddress can help you understand where the requests are originating from. This could be used to analyze usage patterns by region, detect fraud or abuse (if unusual IP addresses are seen), or track regional service quality.
+
+Partner or Service Provider Interaction:
+
+    1. The partner and partnerDomain fields could help you identify patterns in interactions with specific partners. For instance, if you notice a higher error rate with calls involving a certain partner, you could take steps to investigate or improve the service with that partner.
+
+Device Tracking and Security:
+
+    1. The deviceMAC address can be helpful for identifying if the same device is involved in multiple sessions, which could be important for security purposes (e.g., detecting unauthorized access) or troubleshooting (e.g., a malfunctioning device generating errors).
+
+User Experience and Troubleshooting:
+
+    1. By analyzing duration, you can identify sessions with unusually short durations, which could suggest dropped or failed calls. Correlating this data with responseCode can help to understand whether the short duration was due to a technical issue or user action.
+
+Traffic and Load Analysis:
+
+    1. This log entry could be used for traffic analysis, such as how many requests are being handled per minute, how often certain nodes or servers are involved, and which partner domains are being contacted most frequently.
+
+Scalability:
+
+    1. If you track logs like these over time, you can identify patterns related to system load. For example, if nodeIP values show that certain servers are consistently handling a disproportionate amount of traffic, you could use that data to optimize load balancing or improve system scalability.
+
+Further Actions for Log Management:
+    1. You could set up alerting for anomalies such as a high number of 500 response codes, a sudden increase in session durations, or failed interactions from certain devices or partners.
+
+In conclusion, this log entry provides detailed insights into a specific event in the application. Analyzing these logs over time can give you important operational insights, help improve performance, and detect potential issues early on.
+
+2. Web Access -Index - Static Data
+
+    91.205.189.15 - - [19/Oct/2023:18:22:16] "GET /oldlink?itemId=EST-14&JSESSIONID=SD6SL7FF7ADFF53113 HTTP 1.1" 200 1665 "http://www.buttercupgames.com/oldlink?itemId=EST-14" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5" 159 host = Webserver2 source = access.log sourcetype = access_combined 
+
+    1. IP Address:
+91.205.189.15: This is the IP address of the client (or user) making the request. This is useful for identifying the origin of the traffic.
+
+2. Date and Time:
+[19/Oct/2023:18:22:16]: The timestamp indicates when the HTTP request was made, specifically on October 19th, 2023, at 18:22:16. This is important for tracking when specific activities happened.
+
+3. Request Method and Resource:
+"GET /oldlink?itemId=EST-14&JSESSIONID=SD6SL7FF7ADFF53113 HTTP/1.1": This part of the log entry provides details about the HTTP request:
+
+GET: The HTTP method used for the request, in this case, a GET request, which is typically used to retrieve data from a server.
+
+/oldlink?itemId=EST-14&JSESSIONID=SD6SL7FF7ADFF53113: The resource requested, which is the path /oldlink along with query parameters itemId=EST-14 and JSESSIONID=SD6SL7FF7ADFF53113. The itemId is likely referring to a specific item in the system, and the JSESSIONID is a session identifier used to track the user’s session.
+
+HTTP/1.1: The version of the HTTP protocol used for this request. In this case, it is HTTP/1.1.
+
+4. Response Status Code:
+200: The HTTP response code. A 200 status code indicates that the request was successful, meaning the resource was found and served without errors.
+
+5. Response Size:
+1665: This number represents the size of the response in bytes. The server returned a response of 1665 bytes. This helps in understanding the amount of data served to the user.
+
+6. Referer:
+"http://www.buttercupgames.com/oldlink?itemId=EST-14": The Referer header indicates the URL from which the request originated. In this case, it shows that the request to /oldlink was made from http://www.buttercupgames.com/oldlink?itemId=EST-14.
+
+7. User-Agent:
+"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5": The User-Agent header identifies the browser and operating system used by the client making the request. Here:
+
+Mozilla/5.0: A common identifier for web browsers.
+
+Windows NT 6.1; WOW64: Indicates the user is on a Windows 7 (64-bit) operating system.
+
+Chrome/19.0.1084.46: Indicates the user is using Google Chrome version 19.0.1084.46.
+
+Safari/536.5: Identifies that the WebKit-based Safari engine is being used for rendering.
+
+8. Response Time (Milliseconds):
+159: This number represents the time taken by the server to process the request and return the response, in milliseconds. The server took 159ms to fulfill this request.
+
+9. Host:
+host = Webserver2: The host indicates which server processed the request. In this case, the request was handled by Webserver2.
+
+10. Log Source and Type:
+source = access.log: This indicates the log file from which this entry was generated. In this case, it’s the access.log file, which typically records all incoming HTTP requests to the web server.
+
+sourcetype = access_combined: This indicates the type of log format used, which is the combined log format. This format typically includes fields such as IP address, timestamp, request method, response code, and more, which is commonly used by web servers.
+
+How This Log Can Be Used for Analysis:
+1. Traffic Monitoring:
+    1. The IP address (91.205.189.15) indicates the client’s origin. By analyzing the frequency of requests from this IP address, you can identify potential patterns, such as heavy usage or abuse from a single source.
+
+    2. The timestamp allows you to track peak usage times and the volume of traffic at any given moment. Analyzing traffic over time can help you understand daily or seasonal trends in user activity.
+
+2. Performance Monitoring:
+    1. The response time (159ms) can be used to measure the server’s performance. If you notice a spike in response times or slow performance, this can be an indication of potential server overload, inefficient code, or network issues.
+
+    2. Analyzing the response size (1665 bytes) can give insight into the average amount of data served to users. Large response sizes can impact server performance, especially if the server is handling many simultaneous requests.
+
+3. Error Tracking:
+    1. The status code (200) indicates a successful request. However, if you were to track instances where the status code is not 200 (e.g., 404 for not found or 500 for server errors), this would help you identify broken links, missing resources, or server issues that need attention.
+
+    2. Correlating logs with response codes can help identify error trends, such as pages that fail to load or server failures.
+
+4. User Behavior Analysis:
+    1. The Referer header shows that the request originated from http://www.buttercupgames.com/oldlink?itemId=EST-14, allowing you to track the flow of user navigation. If many users are coming from this URL, it indicates that the old link is still being actively used and might need to be updated or redirected.
+
+    2. The User-Agent reveals details about the client’s device and browser, which can help in identifying the most common user configurations and assist in tailoring the site for the most popular devices or browsers.
+
+    3. By tracking the JSESSIONID (a session identifier), you can correlate requests to a specific user session, helping you understand the sequence of actions taken by users.
+
+5. Security Monitoring:
+    1. The IP address can be used to monitor and flag any suspicious or unusual activity from certain addresses (e.g., a high volume of requests from a single IP in a short period could indicate a brute-force attack or automated bot activity).
+
+    2. If the same JSESSIONID appears across multiple logs from different IP addresses, it could indicate a session hijacking attempt.
+
+6. Referrals and Navigation Patterns:
+    1. The Referer value helps in understanding the source of traffic. If a particular referrer consistently sends a lot of traffic, you can investigate whether it’s an external marketing campaign or part of your site’s internal navigation.
+
+    2. Analyzing referrer patterns can also reveal potential issues with broken links or outdated content that still receives traffic.
+
+7. Infrastructure and Load Balancing:
+    1. The host field indicates that the request was processed by Webserver2. If you have multiple web servers, analyzing which server handles more requests can help in monitoring load distribution. If Webserver2 is handling disproportionate traffic, this could point to a need for better load balancing.
+
+Further Actions for Log Management:
+Alerting:
+    1. Set up automated alerts for when there are non-200 response codes or long response times (e.g., >500ms). These could signal issues that require immediate attention.
+
+Log Aggregation and Analysis:
+    1. Use log aggregation tools (such as ELK Stack, Splunk, or Datadog) to consolidate and visualize these logs. With these tools, you can create dashboards to track performance trends, error rates, and user navigation patterns.
+
+Security Auditing:
+    1. Monitor IP addresses for unusual access patterns (e.g., multiple failed attempts, requests from blacklisted regions, or suspicious behaviors). Implement rate-limiting or CAPTCHA to mitigate abuse.
+
+Optimization:
+    1. Use the data to optimize server performance. For instance, analyzing the response size and response time over time could help identify resource-intensive pages that need optimization (e.g., image compression, caching).
