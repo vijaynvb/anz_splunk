@@ -7,3 +7,30 @@ index="web_access" sourcetype="access_combined"
 | dedup clientip, "HTTP Status"
 
 ---------------------------------------------------------------------------- 
+
+index="main" sourcetype="eventgen"
+| stats count as "Total Events in a Node" by nodeName 
+
+index="main" sourcetype="eventgen"
+| stats dc(zipCode) as "NUmber of Zip Codes"
+
+index="main" sourcetype="eventgen"
+| stats sum(duration) as "Total Duration" by partner
+| search partner="Telco01"
+
+index="main" sourcetype="eventgen"
+| stats avg(duration) as AverageDuration by partner 
+| eval TotalCallTime = round(AverageDuration)
+|  eval TotalCallTime = tostring(TotalCallTime, "duration")
+
+index="main" sourcetype="eventgen"
+| stats list(responseCode) as "List of Response code"
+
+index="main" sourcetype="eventgen"
+| stats values(responseCode) as "List of Response code" 
+
+index="main" sourcetype="eventgen"
+| stats min(responseCode) as "List of Response code" 
+
+index="main" sourcetype="eventgen"
+| stats max(responseCode) as "List of Response code"
