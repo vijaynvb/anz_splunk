@@ -34,3 +34,20 @@ index="main" sourcetype="eventgen"
 
 index="main" sourcetype="eventgen"
 | stats max(responseCode) as "List of Response code"
+---------------------------------------------------------------------------- 
+index="web_access" 
+| transaction JSESSIONID 
+---------------------------------------------------------------------------- 
+
+Creating new lookups by splunk
+
+    index=main sourcetype="eventgen"
+    | table deviceMAC, userIPAddress, callerNumber
+    | dedup deviceMAC
+    | outputlookup userInformation.csv
+
+Access lookup data and merge 
+
+    index=main sourcetype="eventgen" 
+    | lookup zipCode_Mapping Zip_Code as zipCode
+    | table callerNumber,zipCode, State, City, County
