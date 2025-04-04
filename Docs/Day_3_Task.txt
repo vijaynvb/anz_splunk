@@ -1,0 +1,9 @@
+# Commands:
+
+index="web_access" sourcetype="access_combined"
+| table clientip, method, bytes, status, productId
+| rename status as "HTTP Status", method as "HTTP Method"
+| sort clientip, "HTTP Status"
+| dedup clientip, "HTTP Status"
+
+---------------------------------------------------------------------------- 
