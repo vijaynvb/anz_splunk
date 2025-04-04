@@ -50,4 +50,22 @@ Access lookup data and merge
 
     index=main sourcetype="eventgen" 
     | lookup zipCode_Mapping Zip_Code as zipCode
-    | table callerNumber,zipCode, State, City, County
+    | table callerNumber,zipCode, State, City, County 
+
+Automatic Lookups: setup the automatic lookup
+
+index=main sourcetype="eventgen"
+```| lookup zipCode_Mapping Zip_Code as zipCode```
+| table callerNumber,zipCode, State, City, County
+
+---------------------------------------------------------------------------- 
+joining two indexs
+
+index=main sourcetype=eventgen | fileds callerName, responseCode, zip_Code
+| rename zip_code as zipCode 
+| join type=zipCode [search index=Zipcode, sourcetype=zip | fields zipCode, country, state]
+
+joing two sourcetype where data is in same index 
+
+sourcetype=eventgen | fileds callerName, responseCode, zipCode
+| join type=zipCode [search sourcetype=zip | fields zipCode, country, state]
